@@ -8,6 +8,7 @@
     $content = $_POST["content"];
     $user = $_SESSION["userName"];
     $image = base64_encode($_POST["image"]);
+    
 
     // Check the data is set
     if (!empty($subject)) {

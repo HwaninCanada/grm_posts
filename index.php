@@ -1,9 +1,6 @@
 <?php
 
-session_start();
-include_once 'db.php'; 
-
-$_SESSION["userName"] = "John Doe";
+include_once 'db.php';
 
 //Setting offset to limit query result size
 

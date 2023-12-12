@@ -14,7 +14,7 @@ if ($currentPageNumber == 1) {
 
 // Getting data from DB
 
-$sql = "SELECT id, title, posted_at, posted_by FROM posts ORDER BY posted_at DESC LIMIT :perPage OFFSET :offset";
+$sql = "SELECT id, title, posted_at, posted_by FROM posts ORDER BY posted_at ASC LIMIT :perPage OFFSET :offset";
 
 try {
 
@@ -43,12 +43,6 @@ try {
     $conn = null;
 }
 
-// EXAMPLE DATA
-//$posts = [
-//    ['title' => 'Sample Post Title 1', 'content' => 'This is the content for post 1.', 'posted_at' => '2023-12-07 12:34:56', 'posted_by' => 'John Doe', 'image' => 'image1.jpg'],
-//    ['title' => 'Sample Post Title 2', 'content' => 'This is the content for post 2.', 'posted_at' => '2023-12-08 10:45:30', 'posted_by' => 'Jane Doe', 'image' => 'image2.jpg'],
-//    
-//];
 
 ?>
 

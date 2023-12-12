@@ -1,7 +1,7 @@
 <?php 
   include_once "db.php";
 
-  $post_id = $_GET["post_id"];
+  $post_id = $_REQUEST["post_id"];
 
   // Getting Data from DB
   $sql = "SELECT * FROM posts WHERE id = :post_id";

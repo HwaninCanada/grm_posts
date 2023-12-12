@@ -37,7 +37,7 @@
 
       // Execute the statement
       if ($stmt->execute()) {
-          echo '<script> alert("It has been posted successfully!"); location.href="index.php" </script>';
+          echo '<script> alert("It has been posted successfully!"); location.href="index.php"; </script>';
       } else {
           echo "Error: " . $stmt->errorInfo()[2];
       }

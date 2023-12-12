@@ -11,8 +11,8 @@
       $stmt = $conn->prepare($sql);
   
       // Bind parameter
-      $stmt->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-  
+      $stmt->bindParam(':post_id', $post_id, PDO::PARAM_STR);
+
       // Execute the statement
       $stmt->execute();
   
@@ -23,7 +23,7 @@
           // Post found
           // You can access post data using $post["column_name"]
       } else {
-          echo "<script> alert('No post found with that ID')</script>";
+          echo "<script> alert('No post found with that ID')</script> location.href='index.php'; ";
       }
   } catch (PDOException $e) {
       die("Database error: " . $e->getMessage());

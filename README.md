@@ -1,12 +1,17 @@
 <h1>Project</h1> 
 
-Build Simple Fourm (Posts) Page.
+Build a Simple Forum (Posts) Page.
 
-db.php : for connect DB (PDO).
-index.php: Main page shows 10 post per page (page feature not done yet).
-new_post.html: view page for creating new post.
+db.php: for connecting DB (PDO).
+<br>
+index.php: The main page shows 10 posts per page (page feature not done yet).
+<br>
+new_post.html: view page for creating a new post.
+<br>
 write_post.php: controller to save post data into DB.
+<br>
 post.php: pages shows detail of a post.
+<br>
 
 Main Page
 <img width="1376" alt="image" src="https://github.com/HwaninCanada/grm_posts/assets/40265940/9ec9a88e-9098-4c5b-a56d-9979d82b66b7">

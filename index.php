@@ -14,7 +14,7 @@ if ($currentPageNumber == 1) {
 
 // Getting data from DB
 
-$sql = "SELECT title, posted_at, posted_by FROM posts ORDER BY posted_at DESC LIMIT :perPage OFFSET :offset";
+$sql = "SELECT id, title, posted_at, posted_by FROM posts ORDER BY posted_at DESC LIMIT :perPage OFFSET :offset";
 
 try {
 
@@ -68,7 +68,7 @@ try {
   <div class="bg-blue-500 p-4 text-white">
     <div class="container mx-auto flex justify-between items-center">
       <div class="text-2xl font-bold">Community Forum</div>
-      <!-- need to user authentication logic here for displaying user-specific elements -->
+      <!-- (LATER)need to user authentication logic here for displaying user-specific elements -->
       <div>
         <!-- not done yet -->
         <?php if ($loggedInUser): ?>
@@ -91,16 +91,17 @@ try {
     <!-- Display Posts -->
     <?php foreach ($posts as $post): ?>
     <!-- Post Information Row -->
-    <div class="flex items-center mb-2">
-      <div class="font-bold mr-2"><?php echo $post['title']; ?></div>
-      <div class="text-gray-500 mr-2"><?php echo $post['posted_at']; ?></div>
-      <div class="text-gray-500"><?php echo $post['posted_by']; ?></div>
-    </div>
-
+    <a href="<?php echo 'post.php?id=' . $post['id']; ?>">
+      <p class="flex items-center mb-2">
+        <strong class="font-bold mr-2"><?php echo $post['title']; ?></strong>
+        <span class="text-gray-500 mr-2"><?php echo $post['posted_at']; ?></span>
+        <strong class="text-gray-500"><?php echo $post['posted_by']; ?></strong>
+      </p>
+    </a>
     <!-- Actions Row -->
     <div class="flex">
-      <!-- Add your authentication logic here for showing/hiding edit/delete buttons -->
-      <!-- Replace 'john_doe' with the actual username of the logged-in user -->
+      <!-- (LATER) Add your authentication logic here for showing/hiding edit/delete buttons -->
+
       <?php if ($loggedInUser == $post['posted_by']): ?>
       <button class="bg-green-500 text-white p-2 rounded-md mr-2">Edit</button>
       <button class="bg-red-500 text-white p-2 rounded-md">Delete</button>

@@ -43,20 +43,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>Post</title>
 </head>
 
 <body>
   <div class="container">
     <!-- Post Information Row -->
-    <p class="flex items-center mb-2">
+    <p class="flex items-center mb-2 border-solid border-2 border-sky-500">
       <strong class="font-bold mr-2"><?php echo $post['title']; ?></strong>
       <span class="text-gray-500 mr-2"><?php echo $post['posted_at']; ?></span>
       <strong class="text-gray-500"><?php echo $post['posted_by']; ?></strong>
     </p>
 
     <!-- Content Row -->
-    <textarea class="mb-4"><?php echo $post['content']; ?></textarea>
+    <textarea class="mb-4 border-solid border-2 border-sky-500"><?php echo $post['content']; ?></textarea>
 
     <!-- Image Row -->
     <?php 

@@ -12,17 +12,35 @@
   <body>
     <div class="container">
       <form action="write_post.php" method="POST" class="flex flex-col">
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" />
-        <label for="content">Content</label>
-        <textarea name="content" id="content" cols="30" rows="10"></textarea>
-        <label for="image">Image (jpeg,png,gif only)</label>
-        <input
-          type="file"
-          name="image"
-          id="image"
-          accept="image/png, image/gif, image/jpeg"
-        />
+        <div class="border-solid border-2 border-sky-500">
+          <label for="title">Title</label>
+          <input
+            class="border-solid border-2 border-sky-500"
+            type="text"
+            name="title"
+            id="title"
+          />
+        </div>
+        <div class="border-solid border-2 border-sky-500">
+          <label for="content">Content</label>
+          <textarea
+            class="border-solid border-2 border-sky-500"
+            name="content"
+            id="content"
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+        <div class="border-solid border-2 border-sky-500">
+          <label for="image">Image (jpeg,png,gif only)</label>
+          <input
+            class="border-solid border-2 border-sky-500"
+            type="file"
+            name="image"
+            id="image"
+            accept="image/png, image/gif, image/jpeg"
+          />
+        </div>
         <button type="submit"></button>
       </form>
     </div>

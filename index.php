@@ -116,7 +116,7 @@ try {
 
     <!-- Button to Write a Post -->
     <div class="mt-8">
-      <button class="bg-blue-500 text-white p-2 rounded-md" onclick="() =>{location.herf='new_post.html'}">Write a
+      <button class="bg-blue-500 text-white p-2 rounded-md" onclick="() =>{location.href='new_post.html'}">Write a
         Post</button>
     </div>
 

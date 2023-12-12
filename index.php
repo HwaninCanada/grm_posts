@@ -91,7 +91,7 @@ try {
     <!-- Display Posts -->
     <?php foreach ($posts as $post): ?>
     <!-- Post Information Row -->
-    <a href="<?php echo 'post.php?id=' . $post['id']; ?>">
+    <a href="<?php echo 'post.php?post_id=' . $post['id']; ?>">
       <p class="flex items-center mb-2">
         <strong class="font-bold mr-2"><?php echo $post['title']; ?></strong>
         <span class="text-gray-500 mr-2"><?php echo $post['posted_at']; ?></span>

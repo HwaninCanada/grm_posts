@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Post</title>
+  </head>
+  <body>
+    <div class="container">
+      <form action="write_post.php" method="POST" class="flex flex-col">
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" id="subject" />
+        <label for="content">Content</label>
+        <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        <label for="image">Image (jpeg,png,gif only)</label>
+        <input
+          type="file"
+          name="image"
+          id="image"
+          accept="image/png, image/gif, image/jpeg"
+        />
+        <button type="submit"></button>
+      </form>
+    </div>
+  </body>
+</html>

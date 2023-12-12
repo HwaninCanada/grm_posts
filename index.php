@@ -1,6 +1,7 @@
 <?php
-
+session_start();
 include_once include_once 'db.php';
+$_SESSION["userName"] = "John Doe";
 
 //Getting data from DB
 $currentPageNumber = 1;

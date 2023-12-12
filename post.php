@@ -7,7 +7,7 @@
   $sql = "SELECT * FROM posts WHERE id = :post_id";
   
   try {
-      // Prepare the statement
+    
       $stmt = $conn->prepare($sql);
   
       // Bind parameter

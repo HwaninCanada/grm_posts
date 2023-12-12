@@ -6,7 +6,10 @@
 
     $title = $_POST["title"];
     $content = $_POST["content"];
-    $user = $_SESSION["userName"];
+    //Not sure about session remove it for now.
+    //Do hard coding.
+    #$user = $_SESSION["userName"];
+    $user = "Admin";
     $image = base64_encode($_POST["image"]);
     
 

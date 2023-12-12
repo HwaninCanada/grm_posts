@@ -19,12 +19,11 @@
       // Fetch a single post into an associative array
       $post = $stmt->fetch(PDO::FETCH_ASSOC);
   
-      if ($post) {
-          // Post found
-          // You can access post data using $post["column_name"]
-      } else {
-          echo "<script> alert('No post found with that ID'); location.href='index.php'; </script>  ";
-      }
+      if (!$post) {
+
+        echo "<script> alert('No post found with that ID'); location.href='index.php'; </script>  ";
+
+      } 
   } catch (PDOException $e) {
       die("Database error: " . $e->getMessage());
   } finally {

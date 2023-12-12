@@ -23,7 +23,7 @@
           // Post found
           // You can access post data using $post["column_name"]
       } else {
-          echo "<script> alert('No post found with that ID') location.href='index.php' </script>  ";
+          echo "<script> alert('No post found with that ID'); location.href='index.php'; </script>  ";
       }
   } catch (PDOException $e) {
       die("Database error: " . $e->getMessage());

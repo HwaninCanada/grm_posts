@@ -1,39 +1,56 @@
 <?php
+
 session_start();
-include_once include_once 'db.php';
+include_once 'db.php'; 
+
 $_SESSION["userName"] = "John Doe";
 
-//Getting data from DB
+//Setting offset to limit query result size
+
 $currentPageNumber = 1;
 $perPage = 10;
-
-if($currentPageNumber == 1){
-  $offset = 0;
-}
-else if($currentPageNumber < 1){
-  $offset = ($pageNumber - 1) * $perPage;
+if ($currentPageNumber == 1) {
+    $offset = 0;
+} else if ($currentPageNumber < 1) {
+    $offset = ($pageNumber - 1) * $perPage;
 }
 
+// Getting data from DB
 
-$sql = "SELECT title, posted_at, posted_by FROM posts ORDER BY posted_at DESC LIMIT $perPage OFFSET $offset";
+$sql = "SELECT title, posted_at, posted_by FROM posts ORDER BY posted_at DESC LIMIT :perPage OFFSET :offset";
 
-$result = $conn->query($sql);
+try {
 
-// Check if there are posts
-if ($result->num_rows > 0) {
+    $stmt = $conn->prepare($sql);
+
+    // Bind parameters
+    $stmt->bindParam(':perPage', $perPage, PDO::PARAM_INT);
+    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+
+    // Execute the query
+    $stmt->execute();
+
     // Fetch posts into an associative array
-    $posts = $result->fetch_all(MYSQLI_ASSOC);
-} else {
-    $posts = [];
+    $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Check if there are posts otherwise aleart error msg
+    if (count($posts) === 0) {
+        echo "<script> alert('query result is empty')</script>";
+        $posts=[];
+    }
+} catch (PDOException $e) {
+    die("Database error: " . $e->getMessage());
+} finally {
+    
+    // Close the database connection
+    $conn = null;
 }
 
-// Close the database connection
-$conn->close();
-
+// EXAMPLE DATA
 //$posts = [
 //    ['title' => 'Sample Post Title 1', 'content' => 'This is the content for post 1.', 'posted_at' => '2023-12-07 12:34:56', 'posted_by' => 'John Doe', 'image' => 'image1.jpg'],
 //    ['title' => 'Sample Post Title 2', 'content' => 'This is the content for post 2.', 'posted_at' => '2023-12-08 10:45:30', 'posted_by' => 'Jane Doe', 'image' => 'image2.jpg'],
-//    // Add more posts as needed
+//    
 //];
 
 ?>
@@ -54,10 +71,9 @@ $conn->close();
   <div class="bg-blue-500 p-4 text-white">
     <div class="container mx-auto flex justify-between items-center">
       <div class="text-2xl font-bold">Community Forum</div>
-      <!-- Add your user authentication logic here for displaying user-specific elements -->
+      <!-- need to user authentication logic here for displaying user-specific elements -->
       <div>
-        <!-- Example: Display username and a logout button if the user is logged in -->
-        <!-- Replace 'username' and 'logout.php' with your actual authentication logic -->
+        <!-- not done yet -->
         <?php if ($loggedInUser): ?>
         <span class="mr-2">Hello, <?php echo $loggedInUser; ?>!</span>
         <a href="logout.php" class="underline">Logout</a>
@@ -100,7 +116,8 @@ $conn->close();
 
     <!-- Button to Write a Post -->
     <div class="mt-8">
-      <button class="bg-blue-500 text-white p-2 rounded-md">Write a Post</button>
+      <button class="bg-blue-500 text-white p-2 rounded-md" onclick="() =>{location.herf='new_post.html'}">Write a
+        Post</button>
     </div>
 
   </div>

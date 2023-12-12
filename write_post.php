@@ -1,54 +1,50 @@
 <?php
   include_once "db.php";
-  
-  // Function to sanitize input data
-function sanitizeInput($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
 
-// Process signup form data
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Process Data from new_post
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  // Sanitize and validate user input
-
-  $subject = sanitizeInput($_POST["subject"]);
-  $content = sanitizeInput($_POST["content"]);
-  $user = $_SESSION["userName"];
-  $image = base64_encode($_POST["image"]);
+    $title = $_POST["title"];
+    $content = $_POST["content"];
+    $user = $_SESSION["userName"];
+    $image = base64_encode($_POST["image"]);
 
     // Check the data is set
-    if (!$rawPassword) {
-        echo "Password is required.";
-        exit();
+    if (!empty($subject)) {
+      echo '<script> alert("Subject is required."); </script>';
+      exit();
+    }
+    else if (!empty($subject)) {
+      echo '<script> alert("Password is required."); </script>';
+      exit();
+    }
+    // SQL query to insert post data into the database
+    $sql = "INSERT INTO posts (title, content, posted_by, image) VALUES (:title, :content, :user, :image)";
+
+    try {
+
+      $stmt = $conn->prepare($sql);
+
+      // Bind parameters
+      $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+      $stmt->bindParam(':content', $content, PDO::PARAM_STR);
+      $stmt->bindParam(':user', $user, PDO::PARAM_STR);
+      $stmt->bindParam(':image', $image, PDO::PARAM_STR);
+
+      // Execute the statement
+      if ($stmt->execute()) {
+          echo '<script> alert("It has been posted successfully!"); location.href="index.php" </script>';
+      } else {
+          echo "Error: " . $stmt->errorInfo()[2];
+      }
+    } catch (PDOException $e) {
+    die("Database error: " . $e->getMessage());
+    } finally {
+      // Close the statement and the database connection
+      $stmt = null;
+      $conn = null;
     }
 
-    // Hash and salt the password
-    $password = password_hash($rawPassword . "akaSaltz", PASSWORD_DEFAULT);
 
-    // SQL query to insert user data into the database
-    $sql = "INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)";
-
-    // Prepare the statement
-    $stmt = $conn->prepare($sql);
-
-    // Bind parameters
-    $stmt->bind_param("sss", $fullName, $email, $password);
-
-    // Execute the statement
-    if ($stmt->execute()) {
-        echo "User registered successfully!";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    // Close the statement
-    $stmt->close();
-}
-
-// Close the database connection
-$conn->close();
+  }   
 ?>

@@ -1,30 +1,21 @@
 <?php
 
-// Load environment variables
-
-try{
-
-    require_once '/home/bitnami/vendor/autoload.php';
-
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
-
-}catch(Exception $e)
-{
-    $s = $e->getMessage() . ' (Error Code:' . $e->getCode() . ')';
-}
-
 // Get database credentials from environment variables
-$db_host = $_ENV['DB_HOST'];
-$db_database = $_ENV['DB_DATABASE'];
-$db_username = $_ENV['DB_USERNAME'];
-$db_password = $_ENV['DB_PASSWORD'];
 
-// Establish a database connection
-$conn = new mysqli($db_host, $db_username, $db_password, $db_database);
+$db_host = "localhost";
+$db_database = "study";
+$db_username = "study_grm";
+$db_password = "@studyDB!!";
 
-// Check the connection
-if ($conn->connect_error) {
-    die("Can't Connect with the DB: " . $conn->connect_error);
+try {
+    // Create a PDO connection
+    $conn = new PDO("mysql:host=$db_host;dbname=$db_database", $db_username, $db_password);
+    
+    // Set PDO to throw exceptions on errors
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // You can use $conn for database operations
+} catch (PDOException $e) {
+    die("Can't Connect with the DB: " . $e->getMessage());
 }
 ?>

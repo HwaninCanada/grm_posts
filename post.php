@@ -46,35 +46,36 @@
   <title>Post</title>
 </head>
 
-<body>
-  <div class="container">
+<body class="bg-gray-100">
+  <div class="container mx-auto p-4">
+
     <!-- Post Information Row -->
-    <p class="flex items-center mb-2 border-solid border-2 border-sky-500">
-      <strong class="font-bold mr-2"><?php echo $post['title']; ?></strong>
+    <div class="flex items-center mb-4 border-b border-gray-300">
+      <strong class="text-xl font-bold mr-2"><?php echo $post['title']; ?></strong>
       <span class="text-gray-500 mr-2"><?php echo $post['posted_at']; ?></span>
       <strong class="text-gray-500"><?php echo $post['posted_by']; ?></strong>
-    </p>
+    </div>
 
     <!-- Content Row -->
-    <textarea class="mb-4 border-solid border-2 border-sky-500"><?php echo $post['content']; ?></textarea>
+    <div class="mb-4">
+      <p class="text-gray-700"><?php echo $post['content']; ?></p>
+    </div>
 
     <!-- Image Row -->
     <?php 
     $imageData = base64_encode($post['image']);
     
     if(!empty($imageData)){
-      
       $imageSrc = "data:image/bmp;base64," . $imageData;
       
-      echo "<div class='flex items-center mb-2'>
-      <img src=".$imageSrc." alt='Post Image' class='w-16 h-16 object-cover rounded-full mr-2;>
+      echo "<div class='flex items-center mb-4'>
+        <img src='".$imageSrc."' alt='Post Image' class='w-16 h-16 object-cover rounded-full mr-2'>
       </div>";
     }
-
     ?>
 
   </div>
-
 </body>
+
 
 </html>

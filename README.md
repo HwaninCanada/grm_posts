@@ -21,6 +21,8 @@ post.php: pages shows detail of a post.
 <br>
 
 Main Page
+
+
 <img width="1376" alt="image" src="https://github.com/HwaninCanada/grm_posts/assets/40265940/9ec9a88e-9098-4c5b-a56d-9979d82b66b7">
 
 Post Page

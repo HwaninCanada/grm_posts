@@ -1,16 +1,23 @@
 <h1>Project</h1> 
 
 Build a Simple Forum (Posts) Page.
+간단한 게시판 페이지 작성
 
 db.php: for connecting DB (PDO).
+        데이터베이스 연결을 위한 파일
 <br>
 index.php: The main page shows 10 posts per page (page feature not done yet).
+           게시판 메인 페이지 10개 포스트를 한페이지에 보여줌 (페이지 기능 없음)
 <br>
 new_post.html: view page for creating a new post.
+               새로운 게시글 작성을 위한 뷰 파일
 <br>
 write_post.php: controller to save post data into DB.
+                실제 데이터베이스에 데이터 작성을 하는 컨트롤러 파일
+              
 <br>
 post.php: pages shows detail of a post.
+          특정 게시글을 보여주는 페이지
 <br>
 
 Main Page
